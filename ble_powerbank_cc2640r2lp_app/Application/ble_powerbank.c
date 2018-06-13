@@ -67,6 +67,7 @@
 #include <ti/drivers/Power.h>
 #include <ti/drivers/power/PowerCC26XX.h>
 #include <ti/drivers/pin/PINCC26XX.h>
+#include <driverlib/sys_ctrl.h>
 #ifdef WATCHDOG_EN
 #include <ti/drivers/Watchdog.h>
 #include "hal_mcu.h"
@@ -492,6 +493,8 @@ void BLE_PowerBank_createTask(void)
 static void BLE_PowerBank_init(void)
 {
     uint8 snv_status = 0;
+    /* Get the reason for reset */
+    uint32_t rSrc = 0;
 
     /* Shut down external flash on LaunchPads. It is powered on by default
      * but can be shut down through SPI
@@ -538,9 +541,14 @@ static void BLE_PowerBank_init(void)
         PIN_setOutputValue(blePowerBankPinHandle, Board_MOS_TRIG, 1);
     }
 
-    if (!BQ27441_initConfig())
+    rSrc = SysCtrlResetSourceGet();
+
+    if(rSrc != RSTSRC_WAKEUP_FROM_SHUTDOWN)
     {
-        while(1);
+        if (!BQ27441_initConfig())
+        {
+            while(1);
+        }
     }
 
     // Read BQ27441 and print values at LCD
@@ -1338,6 +1346,8 @@ static void BLE_PowerBank_Shutdown(void)
     {
         while(1);
     }
+
+    PIN_setOutputValue(blePowerBankPinHandle, Board_MOS_TRIG, 0);
 
     /* Configure DIO for wake up from shutdown */
     PINCC26XX_setWakeup(ButtonTableWakeUp);
