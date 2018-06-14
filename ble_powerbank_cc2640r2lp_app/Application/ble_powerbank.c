@@ -322,6 +322,7 @@ static short bq27441charge, bq27441voltage, bq27441remcap, bq27441current, bq274
 static short batthi, battcrit = 0;
 static uint8_t notval = 0;
 static uint8_t hidischarge_flag = 0;
+static uint8_t charging_flag = 0;
 
 /*********************************************************************
  * LOCAL FUNCTIONS
@@ -823,7 +824,7 @@ static void BLE_PowerBank_taskFxn(UArg a0, UArg a1)
 
             if (events & SBP_PERIODIC_EVT)
             {
-                if ((GapProfileState == GAPROLE_CONNECTED) || (hidischarge_flag == 1))
+                if ((GapProfileState == GAPROLE_CONNECTED) || (hidischarge_flag == 1) || (charging_flag == 1))
                 {
                     Util_restartClock(&periodicClock, BLE_PERIODIC_EVT_PERIOD);
                 }
@@ -1406,6 +1407,8 @@ static void BLE_PowerBank_ReadBQ27441(void)
 
         if (bq27441current > 0)
         {
+            charging_flag = 1;
+
             if ((batthi == bq27441charge) && (notval == 0))
             {
                 notval = 2;
@@ -1419,6 +1422,8 @@ static void BLE_PowerBank_ReadBQ27441(void)
         }
         else
         {
+            charging_flag = 0;
+
             if(bq27441current < hidischarge)
             {
                 // HIGH discharging
