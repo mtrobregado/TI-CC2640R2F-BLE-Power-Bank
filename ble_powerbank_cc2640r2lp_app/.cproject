@@ -53,7 +53,6 @@
 									<listOptionValue builtIn="false" value="${SRC_BLE_DIR}/inc"/>
 									<listOptionValue builtIn="false" value="${SRC_BLE_DIR}/rom"/>
 									<listOptionValue builtIn="false" value="${SRC_BLE_DIR}/common/cc26xx"/>
-									<listOptionValue builtIn="false" value="${EXAMPLE_BLE_ROOT}/src/app"/>
 									<listOptionValue builtIn="false" value="${SRC_BLE_DIR}/icall/inc"/>
 									<listOptionValue builtIn="false" value="${SRC_BLE_DIR}/profiles/dev_info"/>
 									<listOptionValue builtIn="false" value="${SRC_BLE_DIR}/profiles/roles/cc26xx"/>
@@ -183,7 +182,7 @@
 				</configuration>
 			</storageModule>
 			<storageModule moduleId="org.eclipse.cdt.core.externalSettings">
-				<externalSettings containerId="simple_peripheral_cc2640r2lp_stack_library;" factoryId="org.eclipse.cdt.core.cfg.export.settings.sipplier"/>
+				<externalSettings containerId="ble_powerbank_cc2640r2lp_stack_library;" factoryId="org.eclipse.cdt.core.cfg.export.settings.sipplier"/>
 			</storageModule>
 		</cconfiguration>
 		<cconfiguration id="com.ti.ccstudio.buildDefinitions.TMS470.Default.668159564">
@@ -368,7 +367,7 @@
 				</configuration>
 			</storageModule>
 			<storageModule moduleId="org.eclipse.cdt.core.externalSettings">
-				<externalSettings containerId="simple_peripheral_cc2640r2lp_stack_library;" factoryId="org.eclipse.cdt.core.cfg.export.settings.sipplier"/>
+				<externalSettings containerId="ble_powerbank_cc2640r2lp_stack_library;" factoryId="org.eclipse.cdt.core.cfg.export.settings.sipplier"/>
 			</storageModule>
 		</cconfiguration>
 	</storageModule>

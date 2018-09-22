@@ -3,7 +3,7 @@
 	<name>ble_powerbank_cc2640r2lp_app</name>
 	<comment></comment>
 	<projects>
-		<project>simple_peripheral_cc2640r2lp_stack_library</project>
+		<project>ble_powerbank_cc2640r2lp_stack_library</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
